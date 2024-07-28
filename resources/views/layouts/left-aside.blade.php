@@ -21,9 +21,15 @@
         <x-default-navigation />
 
         <main class="bg-gray-100 h-full">
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                @yield('content')
+            <div class="grid md:grid-cols-[300px_1fr] max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 gap-2 md:gap-10">
+                <section>
+                    @yield('aside')
+                </section>
+                <section>
+                    @yield('content')
+                </section>
             </div>
+
         </main>
     </div>
 

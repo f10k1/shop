@@ -1,25 +1,28 @@
 @props(['products' => []])
 
 @if (count($products) > 0)
-    <div class="products-slider">
+    <div x-data="productsSlider({{ count($products) }})" {{ $attributes->merge(['class' => 'products-slider']) }}>
         <div class="slider-title">{{ $slot }}</div>
 
-        <div class="glide" x-data="productsSlider({{ count($products) }})">
+        <div class="glide" x-ref="slider">
             <div class="glide__track" data-glide-el="track">
                 <ul class="glide__slides">
                     @foreach ($products as $product)
                         <li class="glide__slide">
                             <a href="{{ route('product', ['product' => $product->id]) }}">
                                 <div class="image">
-                                    {{-- #TODO product image --}}
-                                    <x-icons.image-placeholder />
+                                    @if ($product->thumb)
+                                        <img src="{{ $product->thumb() }}" />
+                                    @else
+                                        <x-icons.image-placeholder />
+                                    @endif
                                 </div>
 
                                 <div class="content">
                                     <div class="badges">
-                                        @if ($product->isNew())
-                                            <x-badge>New</x-badge>
-                                        @endif
+                                        @foreach ($product->badges() as $badge)
+                                            <x-badge class="{{ $badge['background'] }}">{{ $badge['name'] }}</x-badge>
+                                        @endforeach
                                     </div>
                                     <div class="name">
                                         {{ $product->name }}
@@ -44,11 +47,11 @@
         </div>
     </div>
 
-    @section('styles')
+    @pushOnce('styles')
         @vite(['resources/css/sliders/index.css', 'resources/css/sliders/products.css'])
-    @endsection
+    @endpushonce
 
-    @section('scripts')
+    @pushOnce('scripts')
         @vite('resources/js/sliders/products.js')
-    @endsection
+    @endpushonce
 @endif

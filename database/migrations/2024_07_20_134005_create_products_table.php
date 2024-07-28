@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text("description")->default('');
             $table->text("short_description")->default('');
             $table->timestamps();
+            $table->text('thumb')->nullable();
         });
     }
 

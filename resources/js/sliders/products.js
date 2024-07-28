@@ -16,7 +16,7 @@ document.addEventListener("alpine:init", () => {
             }
         },
         init() {
-            this.glide = new Glide(".products-slider .glide", {
+            this.glide = new Glide(this.$refs.slider, {
                 type: 'slider',
                 perView: 5,
                 bound: true,

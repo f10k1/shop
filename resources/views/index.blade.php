@@ -2,7 +2,5 @@
 
 
 @section('content')
-    <x-sliders.products :products="$products">
-        Our Products
-    </x-sliders.products>
+    <x-sliders.new-products class="mt-5" />
 @endsection

@@ -11,10 +11,19 @@
 
         .image {
             min-height: 200px;
+            position: relative;
 
             @media screen(lg) {
                 height: 100%;
                 min-height: 500px;
+            }
+
+            .badges {
+                position: absolute;
+                left: 20px;
+                top: 20px;
+                display: flex;
+                gap: 10px;
             }
         }
 
@@ -54,12 +63,23 @@
             }
 
             .buy-section {
+                width: 100%;
                 margin-block-start: 20px;
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                flex-direction: column;
 
                 @media screen(lg) { 
                     margin-block-start: auto;
                     margin-inline-start: auto;
+                    flex-direction: row;
                  }
+            }
+
+            .admin-buttons {
+                display: flex;
+                gap: 20px;
             }
 
             .buy-button {
